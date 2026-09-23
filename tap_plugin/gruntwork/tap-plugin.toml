@@ -1,0 +1,20 @@
+manifest_version = "0"
+plugin_version = "0.1.0"
+requires_tap = ">=0.2.1"
+slug = "gruntwork"
+name = "TAP Gruntwork"
+description = "Gruntwork infrastructure-as-code as grid vocabulary: v0 carries one outer node, the Gruntwork deployment (the account factory and infrastructure-live estate it manages), so a design can place it before anything is collected."
+
+# Pure Python, no dependencies, no crypto (spec-fips.md, req-tap-plugin-manifest-v0-fips).
+[fips]
+status = "compatible"
+
+[models]
+gruntwork__gruntwork_deployment = "tap_plugin.gruntwork.models.gruntwork_deployment.GruntworkDeployment"
+
+# In-package boot record (req-boot-bootstrap-records-in-package). Digest is the canonical sha256
+# of the record; regenerate with scripts/boot-record-hash --refresh in a core checkout.
+[[boot.records]]
+name = "ci"
+description = "RESERVED NAME (req-boot-bootstrap-ci-record): the stack this plugin's own tests run in — depends_on closure (empty) + self, offline, credential-free. The consumer flips self to editable."
+sha256 = "46ccde7b1e73a636ec7de53bbd737727294a23bfcb46caa616723023239552e4"
