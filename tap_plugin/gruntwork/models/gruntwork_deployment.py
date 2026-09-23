@@ -37,13 +37,11 @@ class GruntworkDeployment(BaseModel):
     FIELD_CRUD_SCHEMA: ClassVar[dict[str, Any]] = {
         "name": {"type": "string", "minLength": 1},
         "repository_url": {"type": "string"},
-        "configuration": {"type": "object"},
         "tags": {"type": "object"},
     }
     FIELD_VALIDATION_SCHEMA: ClassVar[dict[str, Any]] = {
         "name": {"validation": "jsonschema", "schema": {"type": "string", "minLength": 1}},
         "repository_url": {"validation": "jsonschema", "schema": {"type": "string"}},
-        "configuration": {"validation": "jsonschema", "schema": {"type": "object"}},
         "tags": {"validation": "jsonschema", "schema": {"type": "object"}},
     }
     CREATE_REQUIRED: ClassVar[list[str]] = ["name"]
@@ -51,7 +49,6 @@ class GruntworkDeployment(BaseModel):
     name = models.CharField(max_length=255, blank=True, default="", db_index=True)
     # The infrastructure-live repository the deployment is driven from. Blank until observed.
     repository_url = models.CharField(max_length=512, blank=True, default="")
-    configuration = models.JSONField(default=dict, blank=True)
     tags = models.JSONField(default=dict, blank=True)
 
     class Meta(BaseModel.Meta):
