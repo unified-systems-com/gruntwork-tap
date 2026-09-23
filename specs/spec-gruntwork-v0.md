@@ -54,7 +54,7 @@ A Gruntwork deployment: the Gruntwork-managed estate (account factory, infrastru
 
 #### Implementation
 
-`tap_plugin/gruntwork/models/gruntwork_deployment.py` defines `GruntworkDeployment(BaseModel)` with `ENTITY_TYPE = "gruntwork__gruntwork_deployment"`, `ENTITY_ICON = "gruntwork-deployment"` (SVG at `static/gruntwork/icons/gruntwork-deployment.svg`), no default dimensions, and fields `name` (required), `repository_url` (The infrastructure-live repository the deployment is driven from. Blank until observed.), `configuration` (object) and `tags` (object). `NATURAL_KEY = ("name",)`: a design-phase node has no observed identifier, so its name is the only fact it carries; the key is revisited when `req-gruntwork-collector` makes `repository_url` observable.
+`tap_plugin/gruntwork/models/gruntwork_deployment.py` defines `GruntworkDeployment(BaseModel)` with `ENTITY_TYPE = "gruntwork__gruntwork_deployment"`, `ENTITY_ICON = "gruntwork-deployment"` (SVG at `static/gruntwork/icons/gruntwork-deployment.svg`), no default dimensions, and fields `name` (required), `repository_url` (The infrastructure-live repository the deployment is driven from. Blank until observed.) and `tags` (object). It has no free-form `configuration` field: no collector exists to fill one, and a verbatim record with no reader is only a place for secret material or personal data to collect, so only promoted columns are stored (migration `0002_drop_unused_configuration` removed it). `NATURAL_KEY = ("name",)`: a design-phase node has no observed identifier, so its name is the only fact it carries; the key is revisited when `req-gruntwork-collector` makes `repository_url` observable.
 
 #### Acceptance Criteria
 
@@ -63,6 +63,7 @@ A Gruntwork deployment: the Gruntwork-managed estate (account factory, infrastru
 | req-gruntwork-model-1 | Created Through The Service Layer | Implemented | A `create_node` write with only `name` succeeds and the row carries it. | |
 | req-gruntwork-model-2 | Name Required | Implemented | A `create_node` write without `name` is refused. | |
 | req-gruntwork-model-3 | Keyed By Name | Implemented | `NATURAL_KEY` is `("name",)` and every key field is a model field. | |
+| req-gruntwork-model-4 | No Free-Form Record | Implemented | The deployment declares no `configuration` field, and a `create_node` write carrying it is refused. | `tests/test_gruntwork_deployment.py` |
 
 ---
 
