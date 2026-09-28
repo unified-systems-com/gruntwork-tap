@@ -1,5 +1,5 @@
 manifest_version = "0"
-plugin_version = "0.1.0" # x-release-please-version
+plugin_version = "0.1.1" # x-release-please-version
 requires_tap = ">=0.2.1"
 slug = "gruntwork"
 name = "TAP Gruntwork"
@@ -17,4 +17,4 @@ gruntwork__gruntwork_deployment = "tap_plugin.gruntwork.models.gruntwork_deploym
 [[boot.records]]
 name = "ci"
 description = "RESERVED NAME (req-boot-bootstrap-ci-record): the stack this plugin's own tests run in — depends_on closure (empty) + self, offline, credential-free. The consumer flips self to editable."
-sha256 = "fe6ff8a62d6bdb5c96174e9f58c7277abdb7ee14c0159556683575ff7ca871bb"
+sha256 = "2fd48f3f47506537eeef40f7e05cc479fb3f187df914a5d0dbdd7beac4475d64"
