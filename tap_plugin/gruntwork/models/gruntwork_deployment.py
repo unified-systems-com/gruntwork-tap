@@ -4,6 +4,7 @@ from typing import Any, ClassVar
 
 from django.db import models
 
+from tap_grid.event_time import NO_EVENT_TIME
 from tap_grid.models import BaseModel
 
 
@@ -26,6 +27,8 @@ class GruntworkDeployment(BaseModel):
     # A design-phase node has no observed identifier; its name is the only fact it carries.
     # Revisit when the collector makes repository_url observable (req-gruntwork-collector).
     NATURAL_KEY: ClassVar[tuple[str, ...]] = ("name",)
+    # Fields are name and repository_url only; nothing the source states says when it happened or held.
+    EVENT_TIME = NO_EVENT_TIME
     DEFAULT_DISPLAY: ClassVar[dict[str, Any]] = {
         "tap_viz": {
             "shape": "round-rectangle",
