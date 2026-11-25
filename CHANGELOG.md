@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.2](https://github.com/unified-systems-com/gruntwork-tap/compare/v0.1.1...v0.1.2) (2026-11-25)
+
+
+### Bug Fixes
+
+* ship the history event-time migration on the tap v0.5.0 floor ([1d5ee2b](https://github.com/unified-systems-com/gruntwork-tap/commit/1d5ee2b509361d86dbb1492896bae47de560021e))
+* ship the history event-time migration on the tap v0.5.0 floor ([94f0a64](https://github.com/unified-systems-com/gruntwork-tap/commit/94f0a6424eb1782777138668b11b19f3653a848e))
+
 ## [0.1.1](https://github.com/unified-systems-com/gruntwork-tap/compare/v0.1.0...v0.1.1) (2026-11-24)
 
 
